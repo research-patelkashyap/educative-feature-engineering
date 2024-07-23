@@ -1,6 +1,5 @@
 # Feature Engineering
 
----
 
 - Label Encoding
 - One-hot Encoding
@@ -10,7 +9,6 @@
 - Feature Interaction
 - Date-time Features
 
----
 
 ## Label Encoding
 
@@ -43,7 +41,6 @@
    - Perform encoding consistently across both train and test datasets.
    - Verify the encoded values to ensure correct mappings.
 
----
 
 ## One-hot Encoding
 
@@ -83,7 +80,6 @@
    - Ensure consistent application across train and test datasets.
    - Verify the encoded output to ensure correctness.
 
----
 
 ## Count Encoding
 
@@ -118,7 +114,6 @@
    df["encoded_col"] = df["col1"].map(value_counts_dict)
    ```
 
----
 
 ## Mean Encoding
 
@@ -154,7 +149,6 @@
    df["encoded_col"] = df["col1"].map(mean_dict)
    ```
 
----
 
 ## Weight of Evidence (WOE) Encoding
 
@@ -200,7 +194,6 @@
    df["encoded_col"] = df["col1"].map(woe)
    ```
 
----
 
 ## Feature Interaction
 
@@ -253,7 +246,6 @@
 - Create and add the new feature to the dataset.
 - Consider higher-order interactions with caution.
 
----
 
 ## Handling DateTime Features
 
