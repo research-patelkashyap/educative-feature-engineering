@@ -84,3 +84,43 @@
    - Verify the encoded output to ensure correctness.
 
 ---
+
+## Count Encoding
+
+**Definition**: Count encoding transforms categorical features into numerical features based on the frequency of each category's occurrence in the dataset.
+
+### Key Points:
+
+- **Count Encoding**:
+
+  - Converts each categorical value to the count of its occurrences in the dataset.
+  - Simple and effective, particularly for tree-based models like XGBoost.
+
+- **Advantages**:
+
+  - Simple and effective for many models, especially tree-based models.
+
+- **Limitations**:
+
+  - Not suitable for new categories in the test set not present in the training set.
+  - Can create conflicts if different categories have the same count.
+
+- **Common Use**:
+
+  - Popular in data science competitions and practical applications for tree-based models.
+
+### Steps:
+
+1. **Steps in Pandas**:
+
+   - Use `value_counts` to generate a dictionary of category counts.
+   - Map these counts to create a new encoded column.
+
+2. **Implementation Example**:
+
+   ```python
+   value_counts_dict = df["col1"].value_counts().to_dict()
+   df["encoded_col"] = df["col1"].map(value_counts_dict)
+   ```
+
+---
