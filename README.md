@@ -91,11 +91,6 @@
 
 ### Key Points:
 
-- **Count Encoding**:
-
-  - Converts each categorical value to the count of its occurrences in the dataset.
-  - Simple and effective, particularly for tree-based models like XGBoost.
-
 - **Advantages**:
 
   - Simple and effective for many models, especially tree-based models.
@@ -121,6 +116,42 @@
    ```python
    value_counts_dict = df["col1"].value_counts().to_dict()
    df["encoded_col"] = df["col1"].map(value_counts_dict)
+   ```
+
+---
+
+## Mean Encoding
+
+**Definition**: Mean encoding transforms categorical features into numerical features by replacing each category with the mean of the target value (or any other numerical feature) for that category.
+
+### Key Points:
+
+- **Advantages**:
+
+  - Provides more informative encoding by leveraging the target value.
+
+- **Variations**:
+
+  - Instead of mean, other statistical measures like standard deviation (std), variance (var), or maximum (max) can also be used.
+
+- **Powerful Method**:
+
+  - Captures the mean of a category value in the entire dataset, providing more informative encoding.
+
+- **Example**:
+  - For a "Type" column and a "Price" target: "Sun" might be replaced by the mean price for all "Sun" entries.
+
+### Steps:
+
+1. **Steps in Pandas**:
+
+   - Group by the categorical column and calculate the mean of the target value.
+   - Map these mean values to create a new encoded column.
+
+2. **Implementation Example**:
+   ```python
+   mean_dict = df.groupby("col1")["target"].mean().to_dict()
+   df["encoded_col"] = df["col1"].map(mean_dict)
    ```
 
 ---
