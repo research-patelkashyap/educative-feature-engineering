@@ -161,13 +161,16 @@
 **Definition**: Weight of Evidence (WOE) encoding is a technique used to encode categorical features in binary classification tasks. It measures the ratio of the probabilities of positive and negative outcomes for each category, providing an indication of how each category affects the likelihood of the target variable.
 
 ### Formula:
+
 \[ \text{WOE} = \ln \left( \frac{p(1)}{p(0)} \right) \]
+
 - \( p(1) \) is the probability of the positive label (1) for a given category.
 - \( p(0) \) is the probability of the negative label (0) for the same category.
 
 ### Key Points:
 
 - **Advantages**:
+
   - Helps in understanding the impact of each category on the outcome.
   - Can improve model performance by providing a meaningful encoding.
 
@@ -178,11 +181,13 @@
 ### Steps:
 
 1. **Steps in Pandas**:
+
    - Calculate the probability of positive and negative labels for each category.
    - Compute WOE using the formula \( \text{WOE} = \ln \left( \frac{p(1)}{p(0)} \right) \).
    - Map these WOE values to the original categorical features.
 
 2. **Implementation Example**:
+
    ```python
    # Calculate probabilities
    p1 = df[df["target"] == 1].groupby("col1").size() / df[df["target"] == 1].shape[0]
@@ -194,5 +199,58 @@
    # Map WOE values to original column
    df["encoded_col"] = df["col1"].map(woe)
    ```
+
+---
+
+## Feature Interaction
+
+**Definition**: Feature interaction involves creating new features by combining two or more existing features. This technique helps to capture complex relationships and interactions between features, enhancing the model's predictive power.
+
+### Advantages of Feature Interaction:
+
+- **Expanded Feature Space**:
+
+  - Increases the number of feature combinations, enhancing the model's ability to capture complex patterns.
+
+  - **Example**: Combining a feature with 20 values and another with 30 values results in 600 possible interactions.
+
+- **Finer Sample Distribution**:
+
+  - Allows for more detailed differentiation between samples, improving model accuracy.
+
+- **Introduces Nonlinearity**:
+
+  - Enhances the model's capacity to capture nonlinear relationships between features.
+
+### Practical Tips:
+
+- **Second-Order Interactions**:
+
+  - Commonly used and often sufficient for many tasks.
+
+- **Higher-Order Interactions**:
+
+  - Can be useful but may add excessive complexity. Use judiciously based on task and data.
+
+- **Domain Knowledge**:
+
+  - Apply interactions based on a deep understanding of the domain and task to avoid unnecessary complexity.
+
+### Feature Interaction in Pandas:
+
+1. **Concatenate Features**:
+
+   - **Example**: `df["fea1_fea2"] = df["fea1"].astype('str') + "_" + df["fea2"].astype('str')`
+
+2. **Multiple Columns**:
+
+   - **Example**: `df["fea1_fea2_fea3"] = df["fea1"].astype('str') + "_" + df["fea2"].astype('str') + "_" + df["fea3"].astype('str')`
+
+### Generalized Steps:
+
+- Identify features to interact.
+- Combine features using concatenation or arithmetic operations.
+- Create and add the new feature to the dataset.
+- Consider higher-order interactions with caution.
 
 ---
